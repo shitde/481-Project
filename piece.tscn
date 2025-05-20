@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl01g67chl7pf"]
+
+[ext_resource type="Texture2D" uid="uid://ccpjr5g5g8qdp" path="res://White Piece.png" id="2_fskuk"]
+
+[sub_resource type="GDScript" id="GDScript_ehpqf"]
+script/source = "extends Node2D
+
+
+@onready var sprite = $Sprite
+
+func set_player(value):
+	match value:
+		1:  # PLAYER normal
+			sprite.modulate = Color.GRAY
+		2:  # PLAYER king
+			sprite.modulate = Color.GRAY
+			sprite.scale = Vector2(1.2, 1.2)
+		-1: # AI normal
+			sprite.modulate = Color.BLACK
+		-2: # AI king
+			sprite.modulate = Color.BLACK
+			sprite.scale = Vector2(1.2, 1.2)
+"
+
+[node name="Piece" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = SubResource("GDScript_ehpqf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-16, -16)
+texture = ExtResource("2_fskuk")
